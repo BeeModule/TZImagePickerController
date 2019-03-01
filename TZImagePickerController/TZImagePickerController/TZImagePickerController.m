@@ -397,6 +397,11 @@
 }
 
 - (UIAlertController *)showAlertWithTitle:(NSString *)title {
+    if (self.showMessageBlock != nil) {
+        self.showMessageBlock(title);
+        return nil;
+    }
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:[NSBundle tz_localizedStringForKey:@"OK"] style:UIAlertActionStyleDefault handler:nil]];
     [self presentViewController:alertController animated:YES completion:nil];
